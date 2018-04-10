@@ -2,5 +2,12 @@
 # Build dir
 out/
 
+FactoryDB/
+GarageDB/
+derby.log
+Log/
+settings.xml
+
 # JetBrains IDE
 .idea/
+SoCam/SoCam.iml
