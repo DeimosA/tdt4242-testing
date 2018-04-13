@@ -94,5 +94,16 @@ public class TestVehicle extends TestCase {
         assertEquals(ecus, vehicle.getEcus());
     }
 
+    public void testConstruct() {
+        ArrayList<Ecu> ecus = new java.util.ArrayList<>();
+        ecus.add(new Ecu(1));
+        ecus.add(new Ecu(2));
+        Vehicle vehicle = new Vehicle("32323d", "logger", ecus, "series");
+        assertEquals("logger", vehicle.getHistoryLog());
+        assertEquals("32323d", vehicle.getVehicleID());
+        assertEquals("series", vehicle.getSeries());
+        assertEquals(ecus, vehicle.getEcus());
+    }
+
 
 }
