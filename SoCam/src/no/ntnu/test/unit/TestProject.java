@@ -81,10 +81,12 @@ public class TestProject extends TestCase {
         project.addPerson(person3);
         project.addPerson(person4);
 
+
+        assertEquals(true, project.contains(person3));
+        
         project.removePerson(person3);
         assertEquals(false, project.contains(person3));
 
-        assertEquals(true, project.contains(person3));
         assertEquals(false, project.contains(person2));
         }
 
