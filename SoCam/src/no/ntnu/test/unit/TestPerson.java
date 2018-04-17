@@ -3,6 +3,9 @@ package no.ntnu.test.unit;
 import junit.framework.TestCase;
 import no.ntnu.fp.model.Person;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 public class TestPerson extends TestCase{
     
     public void testPersonConstruct() {
@@ -57,6 +60,47 @@ public class TestPerson extends TestCase{
         assertEquals("different city, and person is considered the same", false, person1.equals(person2));
         person2.setCity("Bergen");
 
+    }
+
+    public void testGetID() {
+        Person person = new Person(123, "name", "email", "street", "city", "vehicleID");
+        assertEquals(123, person.getCustId());
+    }
+
+    public void testPropertyListenerAddRemove() {
+        Person person = new Person(123, "name", "email", "street", "city", "vehicleID");
+        PropertyChangeListener propertyChangeListener = new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+
+            }
+        };
+        person.addPropertyChangeListener(propertyChangeListener);
+        person.removePropertyChangeListener(propertyChangeListener);
+    }
+
+    public void testEqualObj() {
+        Person person = new Person(123, "name", "email", "street", "city", "vehicleID");
+
+        assertEquals(true, person.equals(person));
+        assertEquals(false, person.equals(new String("hei")));
+
+    }
+
+    public void testObjID() {
+        // why do they even have this method
+        Person person = new Person(123, "name", "email", "street", "city", "vehicleID");
+
+        assertEquals(true, person.getId() >= 0);
+    }
+
+    public void testToString() {
+        Person person = new Person(123, "name", "email", "street", "city", "vehicleID");
+        String expectedString = "Name: name; ";
+        expectedString += "Email: email; ";
+        expectedString += "Street: street";
+
+        assertEquals(expectedString, person.toString());
     }
 
 }

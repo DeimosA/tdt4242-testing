@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import no.ntnu.fp.model.Ecu;
 import no.ntnu.fp.model.Vehicle;
 
+import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 
 public class TestVehicle extends TestCase {
@@ -53,6 +54,7 @@ public class TestVehicle extends TestCase {
     public void testLargestEcuID() {
         Vehicle vehicle = new Vehicle();
 
+        assertEquals(0, vehicle.getLargestEcuId());
         for(int i = 1; i <= 3; i++){
             vehicle.addEcu(new Ecu(i*10));
         }
@@ -105,5 +107,30 @@ public class TestVehicle extends TestCase {
         assertEquals(ecus, vehicle.getEcus());
     }
 
+    public void testIndexOf() {
+        Vehicle vehicle = new Vehicle();
+        Ecu ecu = new Ecu(1, 2, 3);
+        Ecu ecu1 = new Ecu(3, 2, 3);
+        vehicle.addEcu(ecu);
+        vehicle.addEcu(ecu1);
+        assertEquals(1, vehicle.indexOf(ecu1));
+    }
 
+    public void testGetIterator() {
+        Vehicle vehicle = new Vehicle();
+        assertEquals(true, vehicle.iterator() != null);
+    }
+
+    public void testFindDot() {
+        // why does this even excist as a public non static function :S
+        Vehicle vehicle = new Vehicle();
+        assertEquals(3, vehicle.findDot("asd.asd"));
+        assertEquals(-1, vehicle.findDot("asdasd"));
+    }
+
+    public void testPropertyChange() {
+        Vehicle vehicle = new Vehicle();
+        PropertyChangeEvent propertyChangeEvent = new PropertyChangeEvent(vehicle, "historyLog", "nada", "new");
+        vehicle.propertyChange(propertyChangeEvent);
+    }
 }

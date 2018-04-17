@@ -46,5 +46,7 @@ public class TestEcu extends TestCase {
         assertEquals(6, ecu.getNewestSub());
     }
 
-
+    public void testGetPropertyName() {
+        assertEquals("ecuId", Ecu.getECUID_PROPERTY_NAME());
+    }
 }

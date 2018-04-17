@@ -3,6 +3,9 @@ package no.ntnu.test.unit;
 import junit.framework.TestCase;
 import no.ntnu.fp.model.Software;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 public class TestSoftware extends TestCase{
     public void testConstructorOne() {
         Software software = new Software();
@@ -26,5 +29,18 @@ public class TestSoftware extends TestCase{
         assertEquals(1, software.getSwVersion());
         assertEquals(2, software.getMinorVersion());
         assertEquals("someurl", software.getUrl());
+    }
+
+    public void testAddRemovePropertyChange() {
+        Software software = new Software();
+        PropertyChangeListener propertyChangeListener = new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+
+            }
+        };
+
+        software.addPropertyChangeListener(propertyChangeListener);
+        software.removePropertyChangeListener(propertyChangeListener);
     }
 }
