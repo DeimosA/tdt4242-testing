@@ -97,32 +97,42 @@ public class TestProject extends TestCase {
     }
 
     public void testEquals() {
-        Project project = new Project();
 
-        assertEquals(true, project.equals(project));
-        assertEquals(false, project.equals("String"));
-
+        Project project0 = new Project();
         Project project1 = new Project();
         Project project2 = new Project();
+        Project project3 = new Project();
 
         Person person1 = new Person(123, "aaa", "a", "a", "a", "a");
         Person person2 = new Person(12, "as", "a", "a", "a", "a");
         Person person3 = new Person(13, "ad", "a", "a", "a", "a");
         Person person4 = new Person(1, "aq", "a", "a", "a", "a");
 
-        project.addPerson(person1);
-        project.addPerson(person2);
-        project.addPerson(person3);
+        project0.addPerson(person1);
+        project0.addPerson(person2);
+        project0.addPerson(person3);
 
         project1.addPerson(person1);
         project1.addPerson(person2);
-        project1.addPerson(person4);
+        project1.addPerson(person3);
 
         project2.addPerson(person1);
         project2.addPerson(person2);
 
-        assertEquals(false, project.equals(project2));
-        assertEquals(false, project.equals(project1));
+        project3.addPerson(person1);
+        project3.addPerson(person3);
+        project3.addPerson(person4);
+
+        // Equals itself
+        assertTrue(project0.equals(project0));
+        // Different object type
+        assertFalse(project0.equals("String"));
+        // Equal person list
+        assertTrue(project0.equals(project1));
+        // Different person count
+        assertFalse(project0.equals(project2));
+        // Different person list
+        assertFalse(project0.equals(project3));
 
     }
 
