@@ -54,10 +54,10 @@ public class TestProject extends TestCase {
 
     public void testIndexOf(){
         Project project = new Project();
-        Person person1 = new Person(1, "name", "email", "street", "city", "vehicleID");
-        Person person2 = new Person(1, "name", "email", "street", "city", "vehicleID");
-        Person person3 = new Person(1, "name", "email", "street", "city", "vehicleID");
-        Person person4 = new Person(1, "name", "email", "street", "city", "vehicleID");
+        Person person1 = new Person(1, "per", "email", "street", "city", "vehicleID");
+        Person person2 = new Person(1, "penny", "email", "street", "city", "vehicleID");
+        Person person3 = new Person(1, "paal", "email", "street", "city", "vehicleID");
+        Person person4 = new Person(1, "mister", "email", "street", "city", "vehicleID");
 
         project.addPerson(person1);
         project.addPerson(person2);
@@ -71,10 +71,10 @@ public class TestProject extends TestCase {
 
     public void testAddRemove() {
         Project project = new Project();
-        Person person1 = new Person(1, "name", "email", "street", "city", "vehicleID");
-        Person person2 = new Person(1, "name", "email", "street", "city", "vehicleID");
-        Person person3 = new Person(1, "name", "email", "street", "city", "vehicleID");
-        Person person4 = new Person(1, "name", "email", "street", "city", "vehicleID");
+        Person person1 = new Person(1, "per", "email", "street", "city", "vehicleID");
+        Person person2 = new Person(1, "penny", "email", "street", "city", "vehicleID");
+        Person person3 = new Person(1, "paal", "email", "street", "city", "vehicleID");
+        Person person4 = new Person(1, "mister", "email", "street", "city", "vehicleID");
 
         project.addPerson(person1);
         //project.addPerson(person2);
@@ -105,10 +105,10 @@ public class TestProject extends TestCase {
         Project project1 = new Project();
         Project project2 = new Project();
 
-        Person person1 = new Person(123, "a", "a", "a", "a", "a");
-        Person person2 = new Person(12, "a", "a", "a", "a", "a");
-        Person person3 = new Person(13, "a", "a", "a", "a", "a");
-        Person person4 = new Person(1, "a", "a", "a", "a", "a");
+        Person person1 = new Person(123, "aaa", "a", "a", "a", "a");
+        Person person2 = new Person(12, "as", "a", "a", "a", "a");
+        Person person3 = new Person(13, "ad", "a", "a", "a", "a");
+        Person person4 = new Person(1, "aq", "a", "a", "a", "a");
 
         project.addPerson(person1);
         project.addPerson(person2);
