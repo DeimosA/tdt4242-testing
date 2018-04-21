@@ -1,13 +1,13 @@
 package no.ntnu.test.integration;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import junit.framework.TestCase;
 import no.ntnu.fp.gui.FactoryProjectPanel;
 import no.ntnu.fp.gui.SoftwarePanel;
 import no.ntnu.fp.model.Project;
 import no.ntnu.fp.model.Software;
+import no.ntnu.fp.storage.CreateFactoryDB;
+import no.ntnu.fp.storage.InsertTestDataFactoryDb;
 import no.ntnu.fp.storage.SoftwareDbStorage;
-import no.ntnu.fp.net.co.ConnectionImpl;
 import java.util.ArrayList;
 
 public class TestSoftwareDbStorage extends TestCase {
@@ -15,8 +15,10 @@ public class TestSoftwareDbStorage extends TestCase {
     private SoftwareDbStorage softwareDbStorage;
 
     public void setUp() {
+        // Reset DB first
+        CreateFactoryDB.main(new String[0]); // This will log SQLException, but don't worry
+        InsertTestDataFactoryDb.main(new String[0]);
         softwareDbStorage = new SoftwareDbStorage();
-        FactoryProjectPanel.main(new String[] {"123"});
     }
 
     public void tearDown() {
@@ -25,13 +27,15 @@ public class TestSoftwareDbStorage extends TestCase {
 
     public void testLoad() {
         Project project = softwareDbStorage.load();
+        // Load just returns null
         assertEquals(project, null);
     }
 
     public void testSave() {
-        Project project = null;
+        Project project = new Project();
         softwareDbStorage.save(project);
-        assertEquals(1, 1);
+        // Save doesn't actually do anything
+        assertTrue(true);
     }
 
     public void testOpenSoftware() {
@@ -39,12 +43,15 @@ public class TestSoftwareDbStorage extends TestCase {
         assertTrue(software.size() > 0);
     }
 
-    /*
     public void testAddSoftware() {
-        Software software = new Software(1, 1,"url");
-        String message = softwareDbStorage.addSoftware(software, null);
-        System.out.println(message);
-    } */
+        int newMajor = 6;
+        Software software = new Software(newMajor, 0,"url.com");
+        SoftwarePanel softwarePanel = new SoftwarePanel(new FactoryProjectPanel());
+        softwarePanel.setModel(software);
+        softwareDbStorage.addSoftware(software, softwarePanel);
+
+        assertTrue(softwareDbStorage.swInSwArchive(newMajor));
+    }
 
     public void testSwInSwArchive() {
         boolean result = softwareDbStorage.swInSwArchive(1);
