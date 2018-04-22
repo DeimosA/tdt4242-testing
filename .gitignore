@@ -11,3 +11,6 @@ settings.xml
 # JetBrains IDE
 .idea/
 SoCam/SoCam.iml
+
+.class
+/SoCam/src/nbproject/private/
